@@ -134,7 +134,7 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="<?php echo base_url(); ?>staff/" class="nav-link ">
+						<a href="<?php echo base_url(); ?>staff/role" class="nav-link ">
 							<i class="nav-icon fas fa-wrench"></i>
 							<p>
 								Staff Role Settings
