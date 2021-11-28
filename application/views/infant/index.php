@@ -1,4 +1,4 @@
-<script type="text/javascript" src="<?php echo base_url(); ?>js/pregnancy/pregnancy.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/infant/infant.js"></script>
 <!-- Begin Page Content -->
 
 <div class="content-wrapper">
@@ -7,12 +7,12 @@
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<h1>OB/GYN List</h1>
+					<h1>Infant List</h1>
 				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
 						<li class="breadcrumb-item"><a href="#">Home</a></li>
-						<li class="breadcrumb-item active">OB/GYN List</li>
+						<li class="breadcrumb-item active">Infant List</li>
 					</ol>
 				</div>
 			</div>
@@ -35,6 +35,7 @@
 								<th>FULL NAME</th>
 								<th>BIRTH DATE</th>
 								<th>LAST CHECK UP</th>
+								<th># OF MONTHS</th>
 								<th>STATUS</th>					
 								<th>ACTION</th>
 							</tr>
@@ -62,7 +63,7 @@
 					<div class="col-6" >
 						<div class="form-group" hidden="">
                     		<input type="text" class="form-control" placeholder="" name="id" id="i-id" >
-                    		<input type="text" class="form-control" placeholder="" name="pregnancy_id" id="i-pregnancy_id" >
+                    		<input type="text" class="form-control" placeholder="" name="infant_id" id="i-infant_id" >
                   		</div>
 					</div>
 					<div class="col-6">
@@ -90,28 +91,28 @@
 				<div class="row">
 					<div class="col-3">
 						<div class="form-group">
-							<label>PIH</label>
-	                        <input type="text" class="form-control" id="i-pih" placeholder="PIH" name="pih">
+							<label>Weight</label>
+	                        <input type="text" class="form-control" id="i-weight" placeholder="Weight" name="weight">
                       	</div>
 					</div>
 					<div class="col-3">
 						<div class="form-group">
-							<label>LMP</label>
-	                        <input type="text" class="form-control" id="i-lmp" placeholder="LMP" name="lmp">
+							<label>Height</label>
+	                        <input type="text" class="form-control" id="i-height" placeholder="Height" name="height">
                       	</div>
 					</div>
 					<div class="col-3">
 						<div class="form-group">
-							<label>EDC</label>
-	                        <input type="text" class="form-control" id="i-edc" placeholder="EDC" name="edc">
+							<label>Vaccine</label>
+	                        <input type="text" class="form-control" id="i-vacinne" placeholder="Vaccine" name="vacinne">
                       	</div>
 					</div>
 					<div class="col-3">
 						<div class="form-group">
-							<label>GP</label>
-	                        <input type="text" class="form-control" id="i-gp" placeholder="GP" name="gp">
+							<label># of Months</label>
+	                        <input type="text" class="form-control " id="i-number_of_months" placeholder="# of Months" name="number_of_months" >
                       	</div>
-					</div>
+					</div>		
 				</div>				
 				<div class="row">
 					<div class="col-12">
