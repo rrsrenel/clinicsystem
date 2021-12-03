@@ -3,7 +3,7 @@ $(document).ready(function () {
 	let json_data =[];
 
 	$.ajax({
-		url: '../resident/getResidentList',
+		url: '../medicine/getMedicineList',
 		dataType: 'json',
 		type: 'post',
 		success: function (response) {
@@ -21,31 +21,23 @@ $(document).ready(function () {
 					},
 					{
 						"targets": 1,
-						"data": "full_name",
+						"data": "name",
 
 					},
 					{
 						"targets": 2,
-						"data": "birth_date"
+						"data": "brand"
 					},
 					{
 						"targets": 3,
-						"data": "gender"
+						"data": "description"
 					},
 					{
 						"targets": 4,
-						"data": "religion"
-					},
+						"data": "type"
+					},					
 					{
 						"targets": 5,
-						"data": "civil_status"
-					},
-					{
-						"targets": 6,
-						"data": "address"
-					},
-					{
-						"targets": 7,
 						"data": "is_enable",
 						"render": function (data, type, row, meta) {
 							if(data==1){
@@ -81,18 +73,10 @@ $(document).ready(function () {
 					{
 						"targets": 4,
 						"className": "text-center",					
-					},
+					},					
 					{
 						"targets": 5,
-						"className": "text-center",					
-					},
-					{
-						"targets": 6,
-						"className": "text-center",					
-					},
-					{
-						"targets": 7,
-						"className": "text-center",			
+						"className": "text-center",	
                         "width": "15%"				
 					}]
 			});
@@ -113,30 +97,17 @@ $(document).ready(function () {
 
 		let postData = {
 			id:$('#modalManage').find('#i-id').val(),
-			resident_type:$('#modalManage').find('#i-resident_type').val(),
-			first_name:$('#modalManage').find('#i-first_name').val(),
-			last_name:$('#modalManage').find('#i-last_name').val(),
-			middle_name:$('#modalManage').find('#i-middle_name').val(),
-			birth_date:$('#modalManage').find('#i-birth_date').val(),
-			birth_place:$('#modalManage').find('#i-birth_place').val(),
-			gender:$('#modalManage').find('#i-gender').val(),
-			civil_status:$('#modalManage').find('#i-civil_status').val(),
-			educational_attainment:$('#modalManage').find('#i-educational_attainment').val(),
-			occupation:$('#modalManage').find('#i-occupation').val(),
-			religion:$('#modalManage').find('#i-religion').val(),
-			citizenship:$('#modalManage').find('#i-citizenship').val(),
-			contact:$('#modalManage').find('#i-contact').val(),
-			house_number:$('#modalManage').find('#i-house_number').val(),
-			street:$('#modalManage').find('#i-street').val(),
-			municipality:$('#modalManage').find('#i-municipality').val(),
+			name:$('#modalManage').find('#i-name').val(),
+			brand:$('#modalManage').find('#i-brand').val(),
+			description:$('#modalManage').find('#i-description').val(),
+			type:$('#modalManage').find('#i-type').val(),	
 		}
 
 		$.ajax({
 			type: 'POST',
-			url: '../resident/manageResident',
+			url: '../medicine/manageMedicine',
 			data: postData,
-			success: function (data) {		
-				$('#modalCategory').modal("hide");
+			success: function (data) {						
 				Swal.fire({
 					title: 'Action is successfully executed',
 					icon:'success',
@@ -159,26 +130,11 @@ $(document).ready(function () {
 		let id = $(this).closest('tr').find('td:eq(0)').text(); //get the id on table
 		let result = json_data.find( element => element.id == id );
 
-		// let result = json_data.filter( function (a){ return a.id == id }); //search entry on the json data (data table data)
-		// result = result[0];
 		$("#i-id").val(result.id);
-		$("#i-resident_type").val(result.resident_type);
-		$("#i-first_name").val(result.first_name);
-		$("#i-last_name").val(result.last_name);
-		$("#i-middle_name").val(result.middle_name);
-		$("#i-birth_date").val(result.birth_date);
-		$("#i-birth_place").val(result.birth_place);
-		$("#i-gender").val(result.gender);
-		$("#i-civil_status").val(result.civil_status);
-		$("#i-educational_attainment").val(result.educational_attainment);
-		$("#i-occupation").val(result.occupation);
-		$("#i-religion").val(result.religion);
-		$("#i-citizenship").val(result.citizenship);
-		$("#i-contact").val(result.contact);
-		$("#i-street").val(result.street);
-		$("#i-municipality").val(result.municipality);
-		$("#i-house_number").val(result.house_number);
-	
+		$("#i-name").val(result.name);
+		$("#i-brand").val(result.brand);
+		$("#i-description").val(result.description);
+		$("#i-type").val(result.type);			
 
 		$('#modalManage').modal('show');
 	});
@@ -211,7 +167,7 @@ $(document).ready(function () {
 
 		$.ajax({
 			type: 'POST',
-			url: '../resident/manageStatus',
+			url: '../medicine/manageStatus',
 			data: postData,
 			success: function (data) {
 				$('#modalEnable').modal('hide');

@@ -1,4 +1,4 @@
-<script type="text/javascript" src="<?php echo base_url(); ?>js/infant/infant.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/patient/patient.js"></script>
 <!-- Begin Page Content -->
 
 <div class="content-wrapper">
@@ -7,12 +7,12 @@
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<h1>Infant List</h1>
+					<h1>Patient List</h1>
 				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
 						<li class="breadcrumb-item"><a href="#">Home</a></li>
-						<li class="breadcrumb-item active">Infant List</li>
+						<li class="breadcrumb-item active">Patient List</li>
 					</ol>
 				</div>
 			</div>
@@ -34,8 +34,7 @@
 								<th>ID</th>
 								<th>FULL NAME</th>
 								<th>BIRTH DATE</th>
-								<th>LAST CHECK UP</th>
-								<th># OF MONTHS</th>
+								<th>LAST CHECK UP</th>				
 								<th>STATUS</th>					
 								<th>ACTION</th>
 							</tr>
@@ -63,7 +62,7 @@
 					<div class="col-6" >
 						<div class="form-group" hidden="">
                     		<input type="text" class="form-control" placeholder="" name="id" id="i-id" >
-                    		<input type="text" class="form-control" placeholder="" name="infant_id" id="i-infant_id" >
+                    		<input type="text" class="form-control" placeholder="" name="patient_id" id="i-patient_id" >
                   		</div>
 					</div>
 					<div class="col-6">
@@ -97,22 +96,16 @@
 					</div>
 					<div class="col-3">
 						<div class="form-group">
-							<label>Height</label>
-	                        <input type="text" class="form-control" id="i-height" placeholder="Height" name="height">
+							<label>Blood Pressure</label>
+	                        <input type="text" class="form-control" id="i-blood_pressure" placeholder="Height" name="blood_pressure">
                       	</div>
 					</div>
 					<div class="col-3">
 						<div class="form-group">
-							<label>Vaccine</label>
-	                        <input type="text" class="form-control" id="i-vacinne" placeholder="Vaccine" name="vacinne">
+							<label>Temperature</label>
+	                        <input type="text" class="form-control" id="i-temperature" placeholder="Temperature" name="temperature">
                       	</div>
-					</div>
-					<div class="col-3">
-						<div class="form-group">
-							<label># of Months</label>
-	                        <input type="text" class="form-control " id="i-number_of_months" placeholder="# of Months" name="number_of_months" >
-                      	</div>
-					</div>		
+					</div>			
 				</div>				
 				<div class="row">
 					<div class="col-12">

@@ -96,7 +96,7 @@
 		<!-- Brand Logo -->
 		<a href="<?php echo base_url(); ?>home/" class="brand-link p-4">
 			<img src="<?php echo base_url(); ?>assets/adminlte/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-			<span class="brand-text font-weight-light">Admin</span>
+			<span class="brand-text font-weight-light">Clinic</span>
 		</a>
 
 		<!-- Sidebar -->
@@ -134,7 +134,7 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="<?php echo base_url(); ?>staff/" class="nav-link ">
+						<a href="<?php echo base_url(); ?>staff/role" class="nav-link ">
 							<i class="nav-icon fas fa-wrench"></i>
 							<p>
 								Staff Role Settings
@@ -151,7 +151,7 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="<?php echo base_url(); ?>staff/" class="nav-link ">
+						<a href="<?php echo base_url(); ?>infant/" class="nav-link ">
 							<i class="nav-icon fas fa-baby"></i>
 							<p>
 								Pediatrician Check-up
@@ -159,7 +159,7 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="<?php echo base_url(); ?>staff/" class="nav-link ">
+						<a href="<?php echo base_url(); ?>patient/" class="nav-link ">
 							<i class="nav-icon fas fa-user-injured"></i>
 							<p>
 								Normal Check-up
@@ -168,7 +168,7 @@
 					</li>
 					<li class="nav-header">MEDICINE</li>
 					<li class="nav-item">
-						<a href="<?php echo base_url(); ?>staff/" class="nav-link ">
+						<a href="<?php echo base_url(); ?>medicine/" class="nav-link ">
 							<i class="nav-icon fas fa-capsules"></i>
 							<p>
 								Medicine Information
@@ -176,7 +176,7 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="<?php echo base_url(); ?>staff/" class="nav-link ">
+						<a href="<?php echo base_url(); ?>medicine/receive" class="nav-link ">
 							<i class="nav-icon fas fa-plus"></i>
 							<p>
 								Received Medicine
@@ -184,7 +184,7 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="<?php echo base_url(); ?>staff/" class="nav-link ">
+						<a href="<?php echo base_url(); ?>medicine/release" class="nav-link ">
 							<i class="nav-icon fas fa-minus"></i>
 							<p>
 								Released Medicine

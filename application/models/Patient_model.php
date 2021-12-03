@@ -1,6 +1,6 @@
 <?php
 
-class Infant_model extends CI_Model {
+class Patient_model extends CI_Model {
 
     public function __construct() {
         
@@ -9,47 +9,44 @@ class Infant_model extends CI_Model {
     }
 
 
-	public function getInfantList() {
+	public function getPatientList() {
 		$query = $this->db->query("SELECT 
-									    A.infant_id,
+									    A.patient_id,
 									    A.resident_id,
 									    CONCAT(first_name, ' ', last_name) AS full_name,
 									    C.birth_date,
 									    A.status,
-									    number_of_months,
 									    MAX(B.checkup_date) AS last_checkup
 									FROM
-									    infant_tbl A
+									    patient_tbl A
 									        LEFT JOIN
-									    infant_detail B ON A.infant_id = B.infant_id
+									    patient_detail B ON A.patient_id = B.patient_id
 									        INNER JOIN
 									    resident_tbl C ON C.id = A.resident_id
-									WHERE
-									    status = 'PENDING'
-									GROUP BY A.infant_id");
+									WHERE status ='PENDING'
+									GROUP BY A.patient_id");
 		return $query->result_array();
 	}
 
-	function manageInfant() {
+	function managePatient() {
 
 		$id = $this->input->post('id');
 
-		$infant_id = $this->input->post('infant_id');
+		$patient_id = $this->input->post('patient_id');
 		$resident_id = $this->input->post('resident_id');
-		$number_of_months = $this->input->post('number_of_months');
 
-		if ($infant_id == "") {
-			$infant_id = $this->getId('IN','infant_id','infant_tbl')->ID;			
-			$result = $this->db->insert('infant_tbl',array('resident_id' => $resident_id ,'infant_id' => $infant_id, 'number_of_months'=>$number_of_months));
+		if ($patient_id == "") {
+			$patient_id = $this->getId('PT','patient_id','patient_tbl')->ID;			
+			$result = $this->db->insert('patient_tbl',array('resident_id' => $resident_id ,'patient_id' => $patient_id));
 		}		
 
 		$data = array(
-			'infant_id' => $infant_id,
+			'patient_id' => $patient_id,
 			'checkup_date' => $this->input->post('checkup_date'),
 			'last_checkup_date' => $this->input->post('last_checkup_date'),	
+			'blood_pressure' => $this->input->post('blood_pressure'),
 			'weight' => $this->input->post('weight'),
-			'height' => $this->input->post('height'),
-			'vacinne' => $this->input->post('vacinne'),	
+			'temperature' => $this->input->post('temperature'),	
 			'remarks' => $this->input->post('remarks'),
 			'diagnosis' => $this->input->post('diagnosis'),
 		);
@@ -57,19 +54,19 @@ class Infant_model extends CI_Model {
 		if ($id != "") {
 			$this->db->set('checkup_date', $data['checkup_date']);
 			$this->db->set('last_checkup_date', $data['last_checkup_date']);
+			$this->db->set('blood_pressure', $data['blood_pressure']);
 			$this->db->set('weight', $data['weight']);
-			$this->db->set('height', $data['height']);
-			$this->db->set('vacinne', $data['vacinne']);
+			$this->db->set('temperature', $data['temperature']);
 			$this->db->set('remarks', $data['remarks']);
 			$this->db->set('diagnosis', $data['diagnosis']);
 			
 			$this->db->where('id', $id);
-			$result = $this->db->update('infant_detail');
+			$result = $this->db->update('patient_detail');
 			return $result;
 		}
 
 		
-		$result = $this->db->insert('infant_detail', $data);
+		$result = $this->db->insert('patient_detail', $data);
 
 		return $result;
 	}
@@ -78,32 +75,28 @@ class Infant_model extends CI_Model {
 		$id = $this->input->post('id');
 		$query = $this->db->query("SELECT 
 										B.id,
-									    A.infant_id,
+									    A.patient_id,
 									    A.resident_id,
 									    CONCAT(first_name, ' ', last_name) AS full_name,
 									    C.birth_date,
 									    A.status,
 									    weight,
-									    height,
-									    vacinne,
+									    blood_pressure,
+									    temperature,
 									    remarks,
 									    diagnosis,
-									    number_of_months,
 									    checkup_date
 									FROM
-									    infant_tbl A
+									    patient_tbl A
 									        LEFT JOIN
-									    infant_detail B ON A.infant_id = B.infant_id
+									    patient_detail B ON A.patient_id = B.patient_id
 									        INNER JOIN
 									    resident_tbl C ON C.id = A.resident_id
 									WHERE
-									    A.infant_id = '$id'
+									    A.patient_id = '$id'
 									ORDER BY checkup_date DESC");
 		return $query->result_array();
 	}
-
-
-
 
 	public function getId($char,$col,$tbl){
 		$query = $this->db->query("SELECT 

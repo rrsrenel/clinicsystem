@@ -4,7 +4,7 @@ $(document).ready(function () {
 	$('.select2').select2()
 
 	$.ajax({
-		url: '../infant/getInfantList',
+		url: '../patient/getPatientList',
 		dataType: 'json',
 		type: 'post',
 		success: function (response) {
@@ -17,7 +17,7 @@ $(document).ready(function () {
 				"columns": [
 					{
 						"targets": 0,
-						"data": "infant_id",
+						"data": "patient_id",
 					},
 					{
 						"targets": 1,
@@ -30,17 +30,13 @@ $(document).ready(function () {
 					{
 						"targets": 3,
 						"data": "last_checkup"
-					},
+					},						
 					{
 						"targets": 4,
-						"data": "number_of_months"
-					},					
-					{
-						"targets": 5,
 						"data": "status"
 					},				
 					{
-						"targets": 6,
+						"targets": 5,
 						"data": "id",
 						"render": function (data, type, row, meta) {
 							if(data==1){
@@ -82,13 +78,9 @@ $(document).ready(function () {
 					{
 						"targets": 4,
 						"className": "text-center",					
-					},
+					},			
 					{
 						"targets": 5,
-						"className": "text-center",					
-					},
-					{
-						"targets": 6,
 						"className": "text-center",	
 						"width": "15%"				
 					}]
@@ -131,21 +123,20 @@ $(document).ready(function () {
 	$('#modalManage').find('#btnSaveItem').on('click',function () {
 		let postData = {
 			id:$('#modalManage').find('#i-id').val(),
-			infant_id:$('#modalManage').find('#i-infant_id').val(),
+			patient_id:$('#modalManage').find('#i-patient_id').val(),
 			resident_id:$('#modalManage').find('#i-resident_id').val(),
 			checkup_date:$('#modalManage').find('#i-checkup_date').val(),
 			last_checkup_date:$('#modalManage').find('#i-last_checkup_date').val(),
-			number_of_months: $('#modalManage').find('#i-number_of_months').val(),
 			weight:$('#modalManage').find('#i-weight').val(),
-			height:$('#modalManage').find('#i-height').val(),
-			vacinne:$('#modalManage').find('#i-vacinne').val(),		
+			temperature:$('#modalManage').find('#i-temperature').val(),
+			blood_pressure:$('#modalManage').find('#i-blood_pressure').val(),		
 			remarks:$('#modalManage').find('#i-remarks').val(),
 			diagnosis:$('#modalManage').find('#i-diagnosis').val(),		
 		}
 
 		$.ajax({
 			type: 'POST',
-			url: '../infant/manageInfant',
+			url: '../patient/managePatient',
 			data: postData,
 			success: function (data) {		
 				$('#modalManage').modal("hide");
@@ -170,7 +161,7 @@ $(document).ready(function () {
 		let id = $(this).closest('tr').find('td:eq(0)').text(); //get the id on table
 		$.ajax({
 			type: 'POST',
-			url: '../infant/getRecordList',
+			url: '../patient/getRecordList',
 			data: {id:id},
 			dataType: 'json',
 			success: function (data) {
@@ -187,19 +178,15 @@ $(document).ready(function () {
 									.append($('<div class="col-3">')
 										.append($('<div class="form-group">')
 											.append('<label>Weight</label>')
-											.append('<input type="text" class="form-control" id="i-pih" placeholder="PIH" name="pih" value="'+data[count].weight+'" disabled>')))
+											.append('<input type="text" class="form-control" id="i-weight" placeholder="" name="weight" value="'+data[count].weight+'" disabled>')))
 									.append($('<div class="col-3">')
 										.append($('<div class="form-group">')
-											.append('<label>Height</label>')
-											.append('<input type="text" class="form-control" id="i-pih" placeholder="PIH" name="pih" value="'+data[count].height+'" disabled>')))
+											.append('<label>Blood Pressure</label>')
+											.append('<input type="text" class="form-control" id="i-blood_pressure" placeholder="" name="blood_pressure" value="'+data[count].blood_pressure+'" disabled>')))
 									.append($('<div class="col-3">')
 										.append($('<div class="form-group">')
-											.append('<label>Vaccine</label>')
-											.append('<input type="text" class="form-control" id="i-pih" placeholder="PIH" name="pih" value="'+data[count].vacinne+'" disabled>')))
-									.append($('<div class="col-3">')
-										.append($('<div class="form-group">')
-											.append('<label># of Months</label>')
-											.append('<input type="text" class="form-control" id="i-pih" placeholder="PIH" name="pih" value="'+data[count].number_of_months+'" disabled>'))))
+											.append('<label>Temperature</label>')
+											.append('<input type="text" class="form-control" id="i-temperature" placeholder="" name="temperature" value="'+data[count].temperature+'" disabled>'))))
 								.append($('<div class="row">')
 									.append($('<div class="col-12">')
 										.append($('<div class="form-group">')
@@ -225,12 +212,10 @@ $(document).ready(function () {
 		$('#modalManage').find("input,textarea,select").val('').end();
 		let parent = $(this).closest('tr');
 		let id = parent.find('td:eq(0)').text();
-		let last_checkup = parent.find('td:eq(3)').text();
-		let number_of_months = parent.find('td:eq(4)').text();
+		let last_checkup = parent.find('td:eq(3)').text();		
 
 		$('#i-last_checkup_date').val(last_checkup);
-		$('#i-infant_id').val(id);
-		$('#i-number_of_months').val(number_of_months).attr('disabled','disabled');
+		$('#i-patient_id').val(id);
 
 		$('#div_resident').addClass("d-none");
 		$('#modalManage').modal('show');
